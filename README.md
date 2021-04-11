@@ -1,8 +1,17 @@
 # TP-microgrid
 
-Mozno by bolo dobre, ak by ste to niekto po mne skontrolovali, lebo ja som stary elektrikar, cize tam je urcite vela nerealit, ale snazil som sa to urobit tak, aby bola aka taka rozvaha vo vykone
+# Aktualny stav:
+PRIDAT cely priecinok do matlab path!
 
-# Postup spustenia druheho MG
-1. spusti file v1.m
-2. pockaj dokym sa otvori simulacia 
-3. spusti, mala by fungovat :D
+# GRID 1:
+Nachystane NARX modely. Bude treba specifikovat, ktore - za mna by bolo tu dobre sa zamerat na U a f.
+pre spustenie staci spustit narx_v0_all.m 
+
+# GRID 2:
+Pustam na skolskom PC trenovanie pre 100 hidden - presnost sa mierne znizila pri 50 HN oproti 20HN, ale
+closed loop vyzera lepsie, za pokus to stoji.
+Pre spustenie treba spustit arx_v1.m (pripadne pre checknutie dat v grafoch v1.m, treba editnut parameter)
+NARX model pre P, ale bude sa dat aj pre Q
+
+# GRID 3:
+Dokonceny model, bude treba nachystat data a spravit NARX. Uvidime este pre ktory.
