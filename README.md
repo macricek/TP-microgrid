@@ -8,10 +8,9 @@ Nachystane NARX modely. Bude treba specifikovat, ktore - za mna by bolo tu dobre
 pre spustenie staci spustit narx_v0_all.m 
 
 # GRID 2:
-Pustam na skolskom PC trenovanie pre 100 hidden - presnost sa mierne znizila pri 50 HN oproti 20HN, ale
-closed loop vyzera lepsie, za pokus to stoji.
+Pustam na skolskom PC automatizovane trenovanie (upper_v1.m) - vysledky sem nejako potom dodam, asi len najlepsie :D
 Pre spustenie treba spustit arx_v1.m (pripadne pre checknutie dat v grafoch v1.m, treba editnut parameter)
-NARX model pre P, ale bude sa dat aj pre Q
+NARX model pre P, ale doplnime aj pre Q
 
 # GRID 3:
-Dokonceny model, bude treba nachystat data a spravit NARX. Uvidime este pre ktory.
+Dokonceny model, bude treba nachystat data a spravit NARX.
