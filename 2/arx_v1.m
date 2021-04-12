@@ -1,7 +1,13 @@
 close all
-clc
-clear
+%clear
 
+%% call from upper
+global upper
+if ~isempty(upper) && upper == 1
+global n
+global hn
+global m
+end
 %% call v1 to get data
 simulation = 0;
 plotData = 0;
@@ -37,17 +43,18 @@ fullQout = [trainQout; testQout];
 
 arrU = [fullBatt,fullCharger,fullSolar,fullVarload,fullWind];
 %% prepare dataset for NARX U
+if upper == 0
 n=4;   % pocet minulych hondnot y
 m=4;   % pocet minulych hondnot u
 hn=100; % pocet skrytych neuronov
-
+end
 u = transToCell(arrU');
 yV = fullQout;
 y = transToCell(yV');
 goal = 1e3;
 
 %% prepare save destination
-path = string(hn);
+path = strcat("all\",string(hn), "_", string(n), "_", string(m));
 mkdir(path);
 %% 
 uall = u;
@@ -70,7 +77,7 @@ net.divideParam.testInd = trainMaxIndx+1:length(y);
 net.divideParam.valInd=[];
 
 % trenovacie parametre
-net.trainParam.epochs=10000;
+net.trainParam.epochs=2000;
 net.trainParam.goal=goal;
 %net.trainParam.min_grad = grad;
 %net.trainFcn = 'trainscg';
@@ -86,8 +93,8 @@ net.trainParam.goal=goal;
 % simulacia vystupu modelu
 YT1 = net(X1,Xi,Ai);
 
-disp('------ chyba - trenovacie data -------')
-perf = perform(net,YT1,Tr1)
+%disp('------ chyba - trenovacie data -------')
+perf = perform(net,YT1,Tr1);
 YT1_mat = cell2mat(YT1)';
 Tr1_mat = cell2mat(Tr1)';
 
@@ -106,8 +113,8 @@ saveas(h1, strcat(path,"\train.bmp"));
 % simulacia vystupu modelu
 YT2 = net(X2,Xi,Ai);
 
-disp('------ chyba - testovacie data -------')
-perf = perform(net,YT2,Tr2)
+%disp('------ chyba - testovacie data -------')
+perfT = perform(net,YT2,Tr2);
 YT2_mat = cell2mat(YT2)';
 Tr2_mat = cell2mat(Tr2)';
 
@@ -123,6 +130,8 @@ netc = closeloop(net);
 
 [Xc,Xic,Aic,Tc] = preparets(netc,utest,{},ytest);
 Yc = netc(Xc,Xic,Aic);
+perfC = perform(netc,Yc,Tc);
+disp(strcat(path," closed performace: ", string(perfC)));
 YTC_mat = cell2mat(Yc)';
 TrC_mat = cell2mat(Tc)';
 
@@ -139,8 +148,5 @@ h4 = figure
 plotperform(tr);
 saveas(h4, strcat(path,"\perform.bmp"));
 
-h5 = figure
-plotresponse(tr);
-saveas(h5, strcat(path,"\response.bmp"));
 
-save(strcat(path,"\workspace.mat"));
+save(strcat(path,"\workspace.mat"),'net','netc','tr');
