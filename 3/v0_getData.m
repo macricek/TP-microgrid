@@ -8,8 +8,8 @@ sampleTimeWind = 20; %Perioda zmeny rychlosti vetra
 sampleTimeLoad = 10; %Perioda zmeny zataze siete
 
 
-simulation = 1; %ak je 0 tak ocakavame nacitanie z .mat subora
-showGraphs = 0;
+simulation = 0; %ak je 0 tak ocakavame nacitanie z .mat subora
+showGraphs = 1;
 
 if simulation > 0
 simOut = sim('simpleMicrogrid_v3_0.slx')
@@ -39,7 +39,7 @@ windIn = simOut.wind_in;  %Rychlost vetra posobiaca na veternu turbinu
 clear simulation simOut;
 save('matlab.mat')
 else
-    load('matlab.mat')
+    load('data.mat')
 end
 
 if showGraphs>0
