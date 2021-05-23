@@ -1,52 +1,34 @@
 clc
 clear
 close all
-%       [1,1,3,1];
-%yV_v = [P,Q,U,f];
+
 
 Ts = 1;
-%% get data from simulation
-v0_getData
-arrU = [batteryPref,varLoad];
-grad = 1e-7;
-%% prepare dataset for NARX U
-n=4;   % pocet minulych hondnot y
-m=4;   % pocet minulych hondnot u
-hn=5; % pocet skrytych neuronov
-
-u = transToCell(arrU');
-yV = U(:,1);
-y = transToCell(yV');
-goal = 1e-7;
-narx_v0
-
-%% dataset for NARX f
-n=2;   % pocet minulych hondnot y
-m=4;   % pocet minulych hondnot u
-hn=10; % pocet skrytych neuronov
-u = transToCell(arrU');
-yV = f;
-y = transToCell(yV');
-goal = 1e-18;
-grad = 1e-15;
-narx_v0
-
-%% P
-n=1;   % pocet minulych hondnot y
-m=4;   % pocet minulych hondnot u
-hn=10; % pocet skrytych neuronov
-u = transToCell(arrU');
-yV = P;
-y = transToCell(yV');
-goal = 1e-3;
-narx_v0
-
-%% Q
-n=4;   % pocet minulych hondnot y
-m=4;   % pocet minulych hondnot u
-hn=5; % pocet skrytych neuronov
-u = transToCell(arrU');
-yV = Q;
-y = transToCell(yV');
-goal = 1e-5;
-narx_v0
+upper = 1;
+nAll = [1,4,7,10];
+mAll = [1,4,7,10];
+hnAll = [5,7,10,20];
+bestPerfC = inf;
+infoCell{1,1} = 'PathName';
+infoCell{1,2} = 'Performance';
+counter = 2;
+for x1=1:length(nAll)
+    for x2 = 1:length(mAll)
+        for x3 = 1:length(hnAll)
+            n = nAll(x1);
+            m = mAll(x2);
+            hn = hnAll(x3);
+            narx_v0;
+            
+            if bestPerfC > perfC
+                bestPerfC = perfC;
+                bestPath = path;
+            end
+            infoCell{counter,1} = path;
+            infoCell{counter,2} = perfC;
+            counter = counter + 1;
+        end
+        pause(10*60);
+    end
+    pause(20*60);
+end

@@ -1,7 +1,7 @@
 %% Simulacia
-close all
-clear
-clc
+%close all
+%clear
+%clc
 
 Ts = 1;
 simulation = 0;
@@ -47,9 +47,8 @@ else
     load('matlab.mat')
 end
 
-% arrU = [batteryPref,varLoad];
-% u = transToCell(arrU');
-% %yV = [P,Q,U(:,1),f]';
-% yV = U;
-% y = transToCell(yV');
+arrU = [batteryPref,varLoad];
+u = transToCell(arrU');
+yV = [U(:,1),f];
+y = transToCell(yV');
 

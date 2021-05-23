@@ -32,6 +32,8 @@ for x1=1:length(nAll)
             infoCell{counter,2} = perfC;
             counter = counter + 1;
         end
+        pause(10*60)
     end
+    pause(20*60)
 end
 
