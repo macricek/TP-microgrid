@@ -3,10 +3,11 @@
 %clear
 %clc
 
-Ts = 1;
-simulation = 0;
+Ts = 0.01;
+simulation =0;
 if simulation > 0
-sim('simpleMicrogrid_v0.slx')
+sim('simpleMicrogrid_v0kr.slx')
+save('matlab1.mat');
 figure(1)
 plot(T,batteryPref);
 hold on
@@ -43,12 +44,13 @@ subplot(5,1,5)
 plot(T,percBatt);
 xlabel('Cas')
 ylabel('% baterie')
+
 else
-    load('matlab.mat')
+    load('matlab1.mat')
 end
 
 arrU = [batteryPref,varLoad];
 u = transToCell(arrU');
-yV = [U(:,1),f];
+yV = f;
 y = transToCell(yV');
 

@@ -13,26 +13,29 @@ end
 path = strcat("all\",string(hn), "_", string(n), "_", string(m));
 mkdir(path);
 
+len = round(length(u));
+lendiv2 = round(len/2);
 % trenovacie data
-utrain=u(1:5000);
-ytrain=y(1:5000);
+utrain=u(1:lendiv2);
+ytrain=y(1:lendiv2);
 
 % testovacie data
-utest=u(5001:length(u));
-ytest=y(5001:length(y));
+utest=u(lendiv2+1:length(u));
+ytest=y(lendiv2+1:length(y));
 
 % vytvorenie NARX modelu
 net = narxnet(1:m,1:n,hn);
 
 % rozdelenie dat
 net.divideFcn='divideind';
-net.divideParam.trainInd=[1:5000];
-net.divideParam.testInd=[5001:length(y)];
+net.divideParam.trainInd=[1:lendiv2];
+net.divideParam.testInd=[lendiv2+1:length(u)];
 net.divideParam.valInd=[];
 
 % trenovacie parametre
 net.trainParam.epochs=500;
-net.trainParam.goal=1e-7;
+net.trainParam.goal=1e-15;
+net.trainParam.min_grad = 1e-15;
 %net.trainFcn = 'trainscg';
 % vytvorenie posuvu vzoriek - all data
 [X,Xi,Ai,Tr] = preparets(net,uall,{},yall);
@@ -50,7 +53,7 @@ disp('------ chyba - trenovacie data -------')
 perf = perform(net,YT1,Tr1)
 YT1_mat = cell2mat(YT1)';
 Tr1_mat = cell2mat(Tr1)';
-printGraph(Tr1, YT1, 1, path, ["U [V]","f [Hz]"]);
+printGraph(Tr1, YT1, 1, path, "f [Hz]");
 
 % vytvorenie posuvu vzoriek - testovacie data
 [X2,Xi,Ai,Tr2] = preparets(net,utest,{},ytest);
@@ -62,7 +65,7 @@ disp('------ chyba - testovacie data -------')
 perf = perform(net,YT2,Tr2)
 YT2_mat = cell2mat(YT2)';
 Tr2_mat = cell2mat(Tr2)';
-printGraph(Tr2, YT2, 2, path, ["U [V]","f [Hz]"]);
+printGraph(Tr2, YT2, 2, path, "f [Hz]");
 
 netc = closeloop(net);
 
@@ -71,7 +74,7 @@ Yc = netc(Xc,Xic,Aic);
 perfC = perform(netc,Yc,Tc);
 disp(strcat(path," closed performace: ", string(perfC)));
 
-printGraph(Tc, Yc, 3, path, ["U [V]","f [Hz]"]);
+printGraph(Tc, Yc, 3, path, "f [Hz]");
 
 h4 = figure
 plotperform(tr);

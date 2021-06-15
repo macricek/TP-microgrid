@@ -27,8 +27,9 @@ plot(YTC_mat(:,i))
 title(titleString);
 xlabel('vzorky');
 ylabel(ylabelstring(i));
-legend('NARX','Data');
+legend('Data','NARX');
 saveas(a, strcat(path,saveString,ylabelstring(i),".bmp"));
+saveas(a, strcat(path,saveString,ylabelstring(i),".fig"));
 hold off
 end
 end
