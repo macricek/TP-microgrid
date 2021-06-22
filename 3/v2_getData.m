@@ -1,6 +1,6 @@
 %% Simulacia
 close all
-clear
+%clear
 clc
 
 Ts = 1; %Vzorkovacia perioda

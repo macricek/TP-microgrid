@@ -22,7 +22,7 @@ for x1=1:length(nAll)
             n = nAll(x1);
             m = mAll(x2);
             hn = hnAll(x3);
-            narx_v1;
+            arx_v1;
             
             if bestPerfC > perfC
                 bestPerfC = perfC;

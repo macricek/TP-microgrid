@@ -1,10 +1,10 @@
 close all
 %clear
 
-
 %% call v1 to get data
-narx_prepareData;
+arx_prepareData;
 
+%% call from upper
 global upper
 if ~isempty(upper) && upper == 1
 global n
@@ -12,13 +12,14 @@ global hn
 global m
 else
     n = 10;
-    hn = 5;
-    m = 1;
+    m = 10;
+    hn = 20;
 end
 
 %% prepare save destination
 path = strcat("all\",string(hn), "_", string(n), "_", string(m));
 mkdir(path);
+
 
 % vytvorenie NARX modelu
 net = narxnet(1:m,1:n,hn);

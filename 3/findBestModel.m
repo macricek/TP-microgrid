@@ -100,51 +100,51 @@ cd best
 %% closed
 cd bestC
 
-open('closedN [Hz].fig')
+open('closedU [V].fig')
 hold on
 title(strcat(leg(1),"[closed loop test]"));
-saveas(gcf, 'closedN [Hz].bmp');
+saveas(gcf, 'closedU [V].bmp');
 
-open('testN [Hz].fig')
+open('testU [V].fig')
 hold on
 title(strcat(leg(1),"[opened loop test]"));
-saveas(gcf, 'testN [Hz].bmp');
+saveas(gcf, 'testU [V].bmp');
 
-open('trainN [Hz].fig')
+open('trainU [V].fig')
 hold on
 title(strcat(leg(1),"[training data]"));
-saveas(gcf, 'trainN [Hz].bmp');
+saveas(gcf, 'trainU [V].bmp');
 % opened
 cd ..
 cd bestO
-open('closedN [Hz].fig')
+open('closedU [V].fig')
 hold on
 title(strcat(leg(2),"[closed loop test]"));
-saveas(gcf, 'closedN [Hz].bmp');
+saveas(gcf, 'closedU [V].bmp');
 
-open('testN [Hz].fig')
+open('testU [V].fig')
 hold on
 title(strcat(leg(2),"[opened loop test]"));
-saveas(gcf, 'testN [Hz].bmp');
+saveas(gcf, 'testU [V].bmp');
 
-open('trainN [Hz].fig')
+open('trainU [V].fig')
 hold on
 title(strcat(leg(2),"[training data]"));
-saveas(gcf, 'trainN [Hz].bmp');
+saveas(gcf, 'trainU [V].bmp');
 % train
 cd ..
 cd bestT
-open('closedN [Hz].fig')
+open('closedU [V].fig')
 hold on
 title(strcat(leg(3),"[closed loop test]"));
-saveas(gcf, 'closedN [Hz].bmp');
+saveas(gcf, 'closedU [V].bmp');
 
-open('testN [Hz].fig')
+open('testU [V].fig')
 hold on
 title(strcat(leg(3),"[opened loop test]"));
-saveas(gcf, 'testN [Hz].bmp');
+saveas(gcf, 'testU [V].bmp');
 
-open('trainN [Hz].fig')
+open('trainU [V].fig')
 hold on
 title(strcat(leg(3),"[training data]"));
-saveas(gcf, 'trainN [Hz].bmp');
+saveas(gcf, 'trainU [V].bmp');

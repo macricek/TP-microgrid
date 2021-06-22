@@ -1,10 +1,9 @@
 close all
-clear
-clc
+%clear
+%clc
 
 % nacitanie dat, ci uz simulacia alebo hocico
 v2_getData;
-upper = 0;
 %parametre NARX
 if upper == 0
     n=5;   % pocet minulych hondnot y

@@ -4,21 +4,33 @@
 %clc
 
 Ts = 0.01;
-simulation =0;
+simulation = 0;
+figures = 1;
 if simulation > 0
 sim('simpleMicrogrid_v0kr.slx')
 save('matlab1.mat');
+else
+    load('matlab1.mat')
+end   
+if figures > 0
 figure(1)
+subplot(2,1,1)
 plot(T,batteryPref);
 hold on
 plot(T,varLoad);
 title('Vstupy')
 xlabel('Cas')
+ylabel('Vykon [W]');
 legend('battery','variableload');
+subplot(2,1,2)
+plot(T,f);
+xlabel('Cas')
+ylabel('Frekvencia [Hz]');
+title('Vystupy');
 
 figure(2)
 hold on
-title('Vstupy')
+title('Vystupy')
 
 subplot(5,1,1)
 plot(T,f);
@@ -44,9 +56,6 @@ subplot(5,1,5)
 plot(T,percBatt);
 xlabel('Cas')
 ylabel('% baterie')
-
-else
-    load('matlab1.mat')
 end
 
 arrU = [batteryPref,varLoad];
