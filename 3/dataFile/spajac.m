@@ -42,8 +42,8 @@ path1 = strcat(path,string(i+1));
 end
 
 %% final prepis
-carChargerControl = ccc;
-carBatteryVoltage = cbv;
+carChargerControl = [zeros(2000,1);ones(2000,1);zeros(1000,1)];
+carBatteryVoltage = cbv + newrand(100,5000,1)';
 carBatteryCurrent = cbc;
 carBatteryPercentage = cbp;
 
@@ -54,37 +54,41 @@ voltageCarChargerC = vccc;
 
 % Napatie jednotlivych faz v gride
 
-voltageGridA = vga + newrand(20,5000)';
-voltageGridB = vgb + newrand(20,5000)';
-voltageGridC = vgc + newrand(20,5000)';
+voltageGridA = vga + newrand(100,5000)';
+voltageGridB = vgb ;
+voltageGridC = vgc + newrand(100,5000)';
 
 for i=1:5000
 if voltageGridA(i) > 270 || voltageGridA(i) < 250
     voltageGridA(i) = 265;
 end
-if voltageGridB(i) > 270 || voltageGridB(i) < 250
-    voltageGridB(i) = 265;
+if voltageGridB(i) > -520 || voltageGridB(i) < -570
+   voltageGridB(i) = -535;
 end
 if voltageGridC(i) > 270 || voltageGridC(i) < 250
     voltageGridC(i) = 265;
 end
 end
 
-varLoad = vl;
-windIn = wi;
+varLoad = vl + newrand(10,5000,70000)';
+windIn = abs(wi + newrand(20,5000,1)');
 
 P = Pp;
 Q = Qq;
 T = Tt;
+
 
 save('data','carChargerControl','carBatteryVoltage','carBatteryCurrent',...
     'carBatteryPercentage','voltageCarChargerA','voltageCarChargerB',...
     'voltageCarChargerC','voltageGridA','voltageGridB','voltageGridC',...
     'varLoad','windIn','P','Q','T');
 
-function novyrand = newrand(every,numofdata)
+function novyrand = newrand(every,numofdata,sizeOF)
+if nargin < 3
+    sizeOF = 10;
+end
 coef = numofdata/every;
-randomik = ((rand(coef,1) - 0.5) * 10);
+randomik = ((rand(coef,1) - 0.5) * sizeOF);
 cnt = 1;
 for i= 1:coef
     for j=1:every

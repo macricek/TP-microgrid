@@ -11,7 +11,7 @@ global m
 
 nAll = [1,4,7,10];
 mAll = [1,4,7,10];
-hnAll = [5,7,10,20];
+hnAll = [5,7,10,20,50,100];
 bestPerfC = inf;
 infoCell{1,1} = 'PathName';
 infoCell{1,2} = 'Performance';

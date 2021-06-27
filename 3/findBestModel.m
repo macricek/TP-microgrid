@@ -22,7 +22,7 @@ ytest=y(lendiv2+1:length(y));
 
 nAll = [1,4,7,10];
 mAll = [1,4,7,10];
-hnAll = [5,7,10,20];
+hnAll = [5,7,10,20,50,100];
 
 bestPerfC = inf;
 bestPerfO = inf;

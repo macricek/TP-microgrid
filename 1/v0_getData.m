@@ -32,27 +32,17 @@ figure(2)
 hold on
 title('Vystupy')
 
-subplot(5,1,1)
-plot(T,f);
-xlabel('Cas')
-ylabel('Frekvencia [Hz]')
-
-subplot(5,1,2)
+subplot(3,1,1)
 plot(T,P);
 xlabel('Cas')
 ylabel('Vykon [W]')
 
-subplot(5,1,3)
-plot(T,Q);
-xlabel('Cas')
-ylabel('Aktivny [W]')
-
-subplot(5,1,4)
+subplot(3,1,2)
 plot(T,U);
 xlabel('Cas')
 ylabel('Napatie [V]')
 
-subplot(5,1,5)
+subplot(3,1,3)
 plot(T,percBatt);
 xlabel('Cas')
 ylabel('% baterie')

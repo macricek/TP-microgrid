@@ -49,28 +49,24 @@ sampleTimeWind
 sampleTimeLoad
 
 figure(3)
-ax1=subplot(4,1,1)
-plot(T,P);
-title('Vykon')
-ylabel('W')
+ax1=subplot(3,1,1)
+plot(T,carChargerControl);
+title('Ovladanie nabijacej stanice')
+xlabel('Cas')
+ylabel('stav')
 
-ax2=subplot(4,1,2)
-plot(T,Q);
-title('Aktivny vykon') % jalovy?
-ylabel('W')
-
-ax3=subplot(4,1,3);
+ax3=subplot(3,1,2);
 plot(T,varLoad);
 title('Variabilna zataz')
 ylabel('W')
 
-ax4=subplot(4,1,4);
+ax4=subplot(3,1,3);
 plot(T,windIn);
 title('Rychlost vetra')
 ylabel('v[m/s]')
-xlabel('Cas')
+xlabel('Vzorky')
 
-linkaxes([ax1,ax2,ax3,ax4],'x')
+linkaxes([ax1,ax3,ax4],'x')
 
 
 %Vykreslenie faz
@@ -92,7 +88,7 @@ plot(T,voltageCarChargerB);
 plot(T,voltageCarChargerC);
 title('Fazy nabijacia stanica');
 legend('A','B','C');
-xlabel('Cas')
+xlabel('Vzorky')
 ylabel('Napatie[V]')
 
 linkaxes([ax5,ax6],'x')
@@ -118,10 +114,17 @@ ylabel('A')
 ax10=subplot(4,1,4);
 plot(T,carChargerControl);
 title('Ovladanie nabijacej stanice')
-xlabel('Cas')
+xlabel('Vzorky')
 ylabel('stav')
 
 linkaxes([ax7,ax8,ax9,ax10],'x')
+
+figure(44)
+plot(T,voltageGridA);
+title('Faza grid');
+ylabel('Napatie[V]')
+xlabel('Vzorky')
+legend('A');
 
 end
 

@@ -55,9 +55,10 @@ if plotData
 figure(1)
 plot(T,fullPout);
 hold on
-plot(T,fullQout);
+%plot(T,fullQout);
 title('Vystupy')
-xlabel('Cas')
+xlabel('Cas [s]')
+ylabel('Vykon [W]');
 legend('P','Q');
 
 figure(2)
@@ -88,4 +89,19 @@ subplot(5,1,5)
 plot(T,fullWind);
 xlabel('Cas')
 ylabel('Vietor [W]')
+
+figure(3)
+hold on
+title('Vstupy')
+
+plot(T,fullBatt);
+plot(T,fullCharger);
+plot(T,fullSolar);
+plot(T,fullVarload);
+plot(T,fullWind);
+
+legend('Bateria [W]','Nabijacka [W]','Slnko [W]','Variable load [W]','Vietor [W]');
+xlabel('Cas [s]');
+ylabel('Vykon [W]');
 end
+
